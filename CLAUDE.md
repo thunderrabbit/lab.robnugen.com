@@ -234,13 +234,16 @@ All three must pass (or the change is not commit-ready). Setup and fixing:
       docker run --rm -e COMPOSER_HOME=/tmp/composer -v "$PWD":/app -w /app \
         composer:2 composer install --no-interaction
 
-  `config.platform.php` pins resolution to php 8.3 (the runner's php) — don't
-  remove it, or composer will resolve packages too new to parse.
+  New sites run PHP 8.5 or later: `composer.json` requires it, PHPStan analyses
+  as 8.5 (`phpVersion` in `phpstan.neon`), and the hook and standards-mcp
+  (`php_target` in its `repos.yaml`) use the php8.5 runner. Change all of them
+  together. `config.platform.php` pins resolution to php 8.5 (the runner's php) —
+  don't remove it, or composer will resolve packages too new to parse.
 
 - Style failures: auto-fix first, then re-check:
 
       docker run --rm --network none -v "$PWD":/app -w /app \
-        standards-codeception-runner:php8.3 php -d memory_limit=1G vendor/bin/phpcbf
+        standards-codeception-runner:php8.5 php -d memory_limit=1G vendor/bin/phpcbf
 
 - The ruleset is `phpcs.xml`: PSR-12 over `classes/`, `wwwroot/`, `prepend.php`
   and `Tests/`, with two narrow exclusions explained inline (side effects in
