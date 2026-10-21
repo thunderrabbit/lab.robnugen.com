@@ -1,6 +1,8 @@
 # Static analysis, run in Docker by ~/work/rob/standards-mcp/run-phpstan.sh.
 parameters:
     level: 10
+    # The PHP new sites run on in production. Analyse as 8.5 even if run on an older PHP.
+    phpVersion: 80500
     paths:
         - classes
         - wwwroot
