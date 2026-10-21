@@ -187,7 +187,8 @@ This leverages DreamHost's consistent `/home/username/domain.com/` path structur
 
 DreamHost caches `.css`/`.js` for 30 days, so asset URLs carry a semver path segment
 instead of `?v=N`: `/css/<?= \Version\Site::SEMVER ?>/styles.css`. `wwwroot/css/.htaccess`
-strips a leading `N.N.N/` from any path that isn't a real file, so every version is served
+strips a leading version segment (a digit, then any digits and dots:
+`1/`, `0.1/`, `1.3.4/`) from any path that isn't a real file, so every version is served
 the current file. The URL only has to change.
 
 - `Version\Site` owns the site's `/css/` (and `/js/`, once there is one: copy the same
