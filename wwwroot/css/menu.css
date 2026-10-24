@@ -63,3 +63,11 @@
 .NavBar .dropdown:focus-within .dropdown-menu {
     display: block;
 }
+
+/* The PHP the server is running (mg #759), next to the Admin link for admins. */
+.NavBar .PhpVersion {
+    margin-left: 0.5em;
+    color: var(--muted, #555555);
+    font-weight: normal;
+    font-size: 0.8em;
+}

@@ -21,6 +21,7 @@ $menu_is_admin = $menu_logged_in && ($is_admin ?? false) === true;
         </div>
         <?php if ($menu_is_admin): ?>
             | <a href="/admin/">Admin</a>
+            <span class="PhpVersion">PHP <?= PHP_VERSION ?></span>
         <?php endif; ?>
     <?php else: ?>
         <a href="/login/">Log in</a>

@@ -1,5 +1,5 @@
 <div class="PagePanel">
-    What's up <?= $username ?>? <br />
+    What's up <?= $username ?>? <span class="PhpVersion">Running PHP <?= PHP_VERSION ?></span><br />
 </div>
 <h1>Welcome to the <?= htmlspecialchars($site_title) ?> Admin Dashboard</h1>
 <p>Registration is <strong><?= $allow_registration ? 'open' : 'closed' ?></strong> to new users.
