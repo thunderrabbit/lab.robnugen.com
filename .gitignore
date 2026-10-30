@@ -13,3 +13,7 @@ Tests/_envs/
 Tests/Support/_generated/*
 !Tests/Support/_generated/.gitkeep
 *~
+
+# WordPress lives at https://lab.robnugen.com/wp/ and is managed by WordPress,
+# not this repo. It stays outside our history and our deploys.
+wwwroot/wp/
