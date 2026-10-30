@@ -11,6 +11,7 @@ $menu_is_admin = $menu_logged_in && ($is_admin ?? false) === true;
 ?>
 <div class="NavBar">
     <a href="/">Home</a> |
+    <a href="/wp/">LR0</a> |
     <?php if ($menu_logged_in): ?>
         <div class="dropdown">
             <a href="/profile/">Profile ▾</a>
