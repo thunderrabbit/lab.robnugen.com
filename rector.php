@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * Rector config — keep the site's PHP at the version it serves, 8.5 (the
+ * standards page's "Rector's PHP 8.5 rules" step). Same scope as phpcs.xml:
+ * everything except the gitignored Config.php, Codeception's generated
+ * output, and the WordPress install under wwwroot/wp/.
+ *
+ * Runs in Docker only, through standards-mcp:
+ *   ~/work/rob/standards-mcp/run-rector.sh ~/work/rob/lab.robnugen.com            dry run (exit 2 = changes found)
+ *   ~/work/rob/standards-mcp/run-rector.sh ~/work/rob/lab.robnugen.com --apply --only=<rule class>
+ *
+ * Rector takes its target version from the PHP it runs on, so it must run on
+ * the php8.5 image (repos.yaml php_target), or it silently skips 8.5 rules.
+ * Apply one rule per commit and run the Unit suite, phpcs and PHPStan between.
+ */
+
+declare(strict_types=1);
+
+use Rector\Config\RectorConfig;
+use Rector\Set\ValueObject\LevelSetList;
+
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->paths([
+        __DIR__ . '/classes',
+        __DIR__ . '/wwwroot',
+        __DIR__ . '/prepend.php',
+        __DIR__ . '/Tests',
+    ]);
+
+    $rectorConfig->skip([
+        __DIR__ . '/vendor',
+        __DIR__ . '/classes/Config/Config.php',
+        __DIR__ . '/Tests/Support/_generated',
+        __DIR__ . '/Tests/_output',
+        // WordPress, managed by WordPress and gitignored; not ours to rewrite.
+        __DIR__ . '/wwwroot/wp',
+    ]);
+
+    $rectorConfig->sets([
+        LevelSetList::UP_TO_PHP_85,
+    ]);
+};
