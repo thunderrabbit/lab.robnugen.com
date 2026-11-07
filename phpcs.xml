@@ -5,7 +5,7 @@
         Tests/, enforced on every commit by .githooks/pre-commit. Fix with
         phpcbf where it can. (templates/*.tpl.php are mixed HTML/PHP and out
         of scope.) Clones inherit this file, so keeping it strict keeps every
-        future site strict. The two narrow exclusions below are deliberate,
+        future site strict. The narrow exclusions below are deliberate,
         not a backlog.
     </description>
 
@@ -16,6 +16,9 @@
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/Tests/_output/*</exclude-pattern>
     <exclude-pattern>*/Tests/Support/_generated/*</exclude-pattern>
+    <!-- WordPress lives under wwwroot/wp/, managed by WordPress and gitignored;
+         its code is not ours to style. -->
+    <exclude-pattern>*/wwwroot/wp/*</exclude-pattern>
 
     <rule ref="PSR12"/>
 
